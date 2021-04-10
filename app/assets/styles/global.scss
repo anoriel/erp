@@ -1,0 +1,20 @@
+// the ~ allows you to reference things in node_modules
+@import "~@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "~@fortawesome/fontawesome-free/css/regular.css";
+@import "~@fortawesome/fontawesome-free/css/solid.css";
+@import "~@fortawesome/fontawesome-free/css/brands.css";
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.childShow {
+  display: none;
+}
+.parentShow:hover .childShow {
+  display: block;
+}
+
+.margin5 {
+  margin: 5px;
+}

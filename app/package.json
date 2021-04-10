@@ -1,0 +1,46 @@
+{
+    "browserslist": [
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead"
+    ],
+    "devDependencies": {
+        "@babel/plugin-transform-runtime": "^7.13.10",
+        "@babel/runtime": "^7.13.10",
+        "@symfony/stimulus-bridge": "^2.0.0",
+        "@symfony/webpack-encore": "^1.0.0",
+        "babel-eslint": "^10.1.0",
+        "core-js": "^3.0.0",
+        "eslint": "^7.23.0",
+        "eslint-loader": "^4.0.2",
+        "eslint-plugin-vue": "^7.8.0",
+        "regenerator-runtime": "^0.13.2",
+        "sass": "^1.32.8",
+        "sass-loader": "^11.0.0",
+        "stimulus": "^2.0.0",
+        "vue-loader": "^15.9.6",
+        "vue-template-compiler": "^2.6.12",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "csfix": "eslint assets/vue --ext .js,.vue, --fix",
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress",
+        "fix": "composer csfix && composer cscheck && composer phpstan && bin/phpunit"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.3",
+        "axios": "^0.21.1",
+        "bootstrap": "^4.6.0",
+        "bootstrap-scss": "^4.6.0",
+        "bootstrap-vue": "^2.21.2",
+        "vue": "^2.6.12",
+        "vue-router": "^3.5.1",
+        "vuex": "^3.6.2"
+    }
+}
