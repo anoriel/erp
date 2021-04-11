@@ -87,7 +87,6 @@ final class ProviderController extends AbstractController
 
         try {
             $provider = $this->em->getRepository(Provider::class)->findOneBy(['id' => $id]);
-            assert($provider instanceof Provider);
 
             // item not found
             if (empty($provider)) {
@@ -97,6 +96,8 @@ final class ProviderController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($provider instanceof Provider);
 
             $this->em->remove($provider);
 
@@ -123,7 +124,6 @@ final class ProviderController extends AbstractController
 
         try {
             $provider = $this->em->getRepository(Provider::class)->findOneBy(['id' => $id]);
-            assert($provider instanceof Provider);
 
             // item not found
             if (empty($provider)) {
@@ -133,6 +133,8 @@ final class ProviderController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($provider instanceof Provider);
 
             $data = json_decode((string) $request->getContent());
 

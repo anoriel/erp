@@ -88,7 +88,6 @@ final class StockByCompanyController extends AbstractController
 
         try {
             $stockByCompany = $this->em->getRepository(StockByCompany::class)->findOneBy(['id' => $id]);
-            assert($stockByCompany instanceof StockByCompany);
 
             // item not found
             if (empty($stockByCompany)) {
@@ -98,6 +97,8 @@ final class StockByCompanyController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($stockByCompany instanceof StockByCompany);
 
             $this->em->remove($stockByCompany);
 
@@ -124,7 +125,6 @@ final class StockByCompanyController extends AbstractController
 
         try {
             $stockByCompany = $this->em->getRepository(StockByCompany::class)->findOneBy(['id' => $id]);
-            assert($stockByCompany instanceof StockByCompany);
 
             // item not found
             if (empty($stockByCompany)) {
@@ -134,6 +134,8 @@ final class StockByCompanyController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($stockByCompany instanceof StockByCompany);
 
             $this->stockByCompany = $stockByCompany;
 
@@ -180,7 +182,6 @@ final class StockByCompanyController extends AbstractController
     {
         $companyId = property_exists($data, 'companyId') ? (string) $data->companyId : '';
         $company = $this->em->getRepository(Company::class)->findOneBy(['id' => $companyId]);
-        assert($company instanceof Company);
         // item not found
         if (empty($company)) {
             return [
@@ -189,9 +190,10 @@ final class StockByCompanyController extends AbstractController
             ];
         }
 
+        assert($company instanceof Company);
+
         $productId = property_exists($data, 'productId') ? (string) $data->productId : '';
         $product = $this->em->getRepository(Product::class)->findOneBy(['id' => $productId]);
-        assert($product instanceof Product);
 
         // item not found
         if (empty($product)) {
@@ -200,6 +202,8 @@ final class StockByCompanyController extends AbstractController
                 'error' => Response::HTTP_NOT_FOUND,
             ];
         }
+
+        assert($product instanceof Product);
 
         $quantity = property_exists($data, 'quantity') ? intval($data->quantity) : 0;
 

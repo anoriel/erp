@@ -98,7 +98,6 @@ final class ProductController extends AbstractController
 
         try {
             $product = $this->em->getRepository(Product::class)->findOneBy(['id' => $id]);
-            assert($product instanceof Product);
 
             // item not found
             if (empty($product)) {
@@ -108,6 +107,8 @@ final class ProductController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($product instanceof Product);
 
             $this->em->remove($product);
 
@@ -134,7 +135,6 @@ final class ProductController extends AbstractController
 
         try {
             $product = $this->em->getRepository(Product::class)->findOneBy(['id' => $id]);
-            assert($product instanceof Product);
 
             // item not found
             if (empty($product)) {
@@ -144,6 +144,8 @@ final class ProductController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($product instanceof Product);
 
             $data = json_decode((string) $request->getContent());
 

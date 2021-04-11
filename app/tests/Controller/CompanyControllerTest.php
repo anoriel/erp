@@ -101,12 +101,12 @@ final class CompanyControllerTest extends AbstractControllerWebTestCase
    */
     public function testFindAllCompanies(): void
     {
-    // test that sending a request without being authenticated will result to a unauthorized HTTP code.
+      // test that sending a request without being authenticated will result to a unauthorized HTTP code.
         $this->assertUnauthorized(Request::METHOD_GET, '/api/companies');
 
         $list = $this->em->getRepository(Company::class)->findBy([], ['name' => 'ASC']);
 
-    // test that sending a request while begin authenticated will result to a OK HTTP code.
+      // test that sending a request while begin authenticated will result to a OK HTTP code.
         $this->login(UserFixtures::DEFAULT_USER_LOGIN, UserFixtures::DEFAULT_USER_PASSWORD);
         $this->client->request(Request::METHOD_GET, '/api/companies');
         $response = $this->client->getResponse();

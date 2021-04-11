@@ -91,7 +91,6 @@ final class TransactionController extends AbstractController
 
         try {
             $transaction = $this->em->getRepository(Transaction::class)->findOneBy(['id' => $id]);
-            assert($transaction instanceof Transaction);
 
             // item not found
             if (empty($transaction)) {
@@ -101,6 +100,8 @@ final class TransactionController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($transaction instanceof Transaction);
 
             $this->em->remove($transaction);
 
@@ -127,7 +128,6 @@ final class TransactionController extends AbstractController
 
         try {
             $transaction = $this->em->getRepository(Transaction::class)->findOneBy(['id' => $id]);
-            assert($transaction instanceof Transaction);
 
             // item not found
             if (empty($transaction)) {
@@ -137,6 +137,8 @@ final class TransactionController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($transaction instanceof Transaction);
 
             $this->transaction = $transaction;
 
@@ -184,7 +186,6 @@ final class TransactionController extends AbstractController
         $companyId = property_exists($data, 'companyId') ? (string) $data->companyId : '';
         $company = $this->em->getRepository(Company::class)->findOneBy(['id' => $companyId]);
 
-        assert($company instanceof Company);
         // item not found
         if (empty($company)) {
             return [
@@ -193,11 +194,12 @@ final class TransactionController extends AbstractController
             ];
         }
 
+        assert($company instanceof Company);
+
         $customer = null;
         if (property_exists($data, 'customerId') && $data->customerId !== null) {
             $customerId = (string) $data->customerId;
             $customer = $this->em->getRepository(Customer::class)->findOneBy(['id' => $customerId]);
-            assert($customer instanceof Customer);
             // item not found
             if (empty($customer)) {
                 return [
@@ -205,13 +207,14 @@ final class TransactionController extends AbstractController
                     'error' => Response::HTTP_NOT_FOUND,
                 ];
             }
+
+            assert($customer instanceof Customer);
         }
 
         $provider = null;
         if (property_exists($data, 'providerId') && $data->providerId !== null) {
             $providerId = (string) $data->providerId;
             $provider = $this->em->getRepository(Provider::class)->findOneBy(['id' => $providerId]);
-            assert($provider instanceof Provider);
             // item not found
             if (empty($provider)) {
                 return [
@@ -219,6 +222,8 @@ final class TransactionController extends AbstractController
                     'error' => Response::HTTP_NOT_FOUND,
                 ];
             }
+
+            assert($provider instanceof Provider);
         }
 
         if (empty($provider) && empty($customer)) {
@@ -230,7 +235,6 @@ final class TransactionController extends AbstractController
 
         $productId = property_exists($data, 'productId') ? (string) $data->productId : '';
         $product = $this->em->getRepository(Product::class)->findOneBy(['id' => $productId]);
-        assert($product instanceof Product);
 
         // item not found
         if (empty($product)) {
@@ -239,6 +243,8 @@ final class TransactionController extends AbstractController
                 'error' => Response::HTTP_NOT_FOUND,
             ];
         }
+
+        assert($product instanceof Product);
 
         $quantity = property_exists($data, 'quantity') ? intval($data->quantity) : 0;
 

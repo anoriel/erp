@@ -87,7 +87,6 @@ final class CustomerController extends AbstractController
 
         try {
             $customer = $this->em->getRepository(Customer::class)->findOneBy(['id' => $id]);
-            assert($customer instanceof Customer);
 
             // item not found
             if (empty($customer)) {
@@ -97,6 +96,8 @@ final class CustomerController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($customer instanceof Customer);
 
             $this->em->remove($customer);
 
@@ -123,7 +124,6 @@ final class CustomerController extends AbstractController
 
         try {
             $customer = $this->em->getRepository(Customer::class)->findOneBy(['id' => $id]);
-            assert($customer instanceof Customer);
 
             // item not found
             if (empty($customer)) {
@@ -133,6 +133,8 @@ final class CustomerController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($customer instanceof Customer);
 
             $data = json_decode((string) $request->getContent());
 

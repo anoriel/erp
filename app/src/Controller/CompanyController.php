@@ -101,7 +101,6 @@ final class CompanyController extends AbstractController
 
         try {
             $company = $this->em->getRepository(Company::class)->findOneBy(['id' => $id]);
-            assert($company instanceof Company);
 
             // item not found
             if (empty($company)) {
@@ -111,6 +110,8 @@ final class CompanyController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($company instanceof Company);
 
             $this->em->remove($company);
 
@@ -137,7 +138,6 @@ final class CompanyController extends AbstractController
 
         try {
             $company = $this->em->getRepository(Company::class)->findOneBy(['id' => $id]);
-            assert($company instanceof Company);
 
             // item not found
             if (empty($company)) {
@@ -147,6 +147,8 @@ final class CompanyController extends AbstractController
 
                 return new JsonResponse($data, Response::HTTP_NOT_FOUND, [], true);
             }
+
+            assert($company instanceof Company);
 
             $data = json_decode((string) $request->getContent());
 

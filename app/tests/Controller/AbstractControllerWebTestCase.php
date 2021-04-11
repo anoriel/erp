@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 use function Safe\json_decode;
 use function Safe\json_encode;
-use function var_dump;
 
 abstract class AbstractControllerWebTestCase extends WebTestCase
 {
@@ -60,10 +59,6 @@ abstract class AbstractControllerWebTestCase extends WebTestCase
      */
     protected function assertJSONResponse(Response $response, int $expectedStatusCode)
     {
-        if ($expectedStatusCode !== $response->getStatusCode()) {
-            var_dump($this->client->getResponse());
-        }
-
         $this->assertEquals($expectedStatusCode, $response->getStatusCode());
         $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
         $this->assertJson($response->getContent());
@@ -148,10 +143,6 @@ abstract class AbstractControllerWebTestCase extends WebTestCase
     {
         $this->JSONRequest($method, $url);
 
-        if ($this->client->getResponse()->getStatusCode() !== Response::HTTP_NOT_FOUND) {
-            var_dump($this->client->getResponse());
-        }
-
         return $this->assertJSONResponse(
             $this->client->getResponse(),
             Response::HTTP_NOT_FOUND
@@ -168,10 +159,6 @@ abstract class AbstractControllerWebTestCase extends WebTestCase
     public function assertOk(string $method, string $url, array $data = [])
     {
         $this->JSONRequest($method, $url, $data);
-
-        if ($this->client->getResponse()->getStatusCode() !== Response::HTTP_OK) {
-            var_dump($this->client->getResponse()->getContent());
-        }
 
         return $this->assertJSONResponse($this->client->getResponse(), Response::HTTP_OK);
     }

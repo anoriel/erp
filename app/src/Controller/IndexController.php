@@ -32,8 +32,8 @@ final class IndexController extends AbstractController
     public function indexAction(): Response
     {
         $user = $this->getUser();
-        assert($user instanceof User || $user === null);
         $data = null;
+        assert($user instanceof User || $user === null);
         if (! empty($user)) {
             $userClone = clone $user;
             $userClone->setPassword('');
